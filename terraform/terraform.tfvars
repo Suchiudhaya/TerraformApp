@@ -5,4 +5,3 @@ key_name       = "my-key"                # replace with your EC2 key pair name
 public_key_path = "C:/Users/UDHAYA/.ssh/id_rsa.pub"    # replace with your public key path
 git_repo       = "https://github.com/Suchiudhaya/TerraformApp.git"  # replace with your repo URL
 my_ip_cidr     = "51.241.192.147/32"        # replace with your own public IP/32 for SSH access
->>>>>>> 2c4e470 (Update terraform.tfvars)
