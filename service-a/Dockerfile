@@ -1,0 +1,1 @@
+<contents from document service-a/Dockerfile>
