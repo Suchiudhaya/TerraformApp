@@ -15,7 +15,7 @@ variable "instance_type" {
 
 variable "key_name" {
   type    = string
-  default = "my-key"
+  default = "Devops_key"
 }
 
 variable "public_key_path" {
