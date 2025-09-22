@@ -87,6 +87,11 @@ resource "aws_security_group" "web" {
   tags = { Name = "${var.project_name}-sg" }
 }
 
+resource "aws_key_pair" "deployer" {
+  key_name   = var.key_name
+  public_key = file(var.public_key_path)
+}
+
 resource "aws_instance" "app" {
   ami                         = data.aws_ami.ubuntu.id
   instance_type               = var.instance_type
