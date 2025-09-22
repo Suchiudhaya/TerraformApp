@@ -117,7 +117,3 @@ resource "aws_instance" "app" {
 
   tags = { Name = "${var.project_name}-instance" }
 }
-
-output "instance_public_ip" {
-  value = aws_instance.app.public_ip
-}
