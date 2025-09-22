@@ -95,20 +95,8 @@ resource "aws_instance" "app" {
   vpc_security_group_ids      = [aws_security_group.web.id]
   key_name                    = var.key_name
 
-  user_data = <<-EOF
-    #!/bin/bash
-    apt-get update
-    apt-get install -y docker.io git curl
-    curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-    chmod +x /usr/local/bin/docker-compose
-    mkdir -p /home/ubuntu/app
-    chown ubuntu:ubuntu /home/ubuntu/app
-    if [ -n "${var.git_repo}" ]; then
-      sudo -u ubuntu git clone ${var.git_repo} /home/ubuntu/app || (cd /home/ubuntu/app && sudo -u ubuntu git pull)
-    fi
-    cd /home/ubuntu/app || exit 0
-    /usr/local/bin/docker-compose up -d --build
-  EOF
+  user_data = file("${path.module}/user_data.sh")  # ← injects the script
+
 
   tags = { Name = "${var.project_name}-instance" }
 }
