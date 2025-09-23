@@ -1,23 +1,18 @@
-version: '3.8'
 services:
-   proxy:
-      build:
-         context: .
-         dockerfile: nginx/Dockerfile
-   ports:
+  frontend:
+    build: ./frontend
+    ports:
       - "80:80"
-   depends_on:
+    depends_on:
       - service-a
       - service-b
 
+  service-a:
+    build: ./service-a
+    ports:
+      - "5001:5001"
 
-service-a:
-   build: ./service-a
-   ports:
-      - "3001:3001"
-
-
-service-b:
-   build: ./service-b
-   ports:
-      - "3002:3002"
+  service-b:
+    build: ./service-b
+    ports:
+      - "5002:5002"
